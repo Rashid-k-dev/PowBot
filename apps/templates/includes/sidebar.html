@@ -1,0 +1,735 @@
+<nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
+    <div class="d-flex align-items-center">
+        <button class="navbar-toggler d-lg-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+
+<nav id="sidebarMenu" class="sidebar d-lg-block collapse" data-simplebar>
+    <!-- Animated background elements -->
+    <div class="sidebar-bg-elements">
+        <div class="bg-circle bg-circle-1"></div>
+        <div class="bg-circle bg-circle-2"></div>
+        <div class="bg-circle bg-circle-3"></div>
+    </div>
+
+    <div class="sidebar-inner px-4 pt-3">
+        <!-- User Profile -->
+        <div class="user-card d-flex align-items-center justify-content-between pb-4">
+            <div class="d-flex align-items-center">
+                <div class="avatar-lg me-3">
+                    <div class="brand-logo">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.4 221.6"
+                            style="enable-background:new 0 0 122.4 221.6;">
+                            <style type="text/css">
+                                .st0 {
+                                    fill: #000000;
+                                }
+
+                                .st1 {
+                                    fill: #39ff14;
+                                    filter: drop-shadow(0 0 5px #39ff14) drop-shadow(0 0 10px #39ff14);
+                                }
+                            </style>
+                            <path class="st0"
+                                d="M914.3,109.3L912,109c0.2,1.2,0.3,2.5,0.5,3.8C913,111.6,913.6,110.4,914.3,109.3z"
+                                fill="#673ab7" />
+                            <path class="st1"
+                                d="M44.7,114.8L2.6,221.6L120.1,75.2l-51.8,1.2L112,3.9c0-0.1,0-0.1,0.1-0.2c0-0.1,0-0.2,0.1-0.3l0,0  c0-0.1,0-0.1,0.1-0.1c0.1-0.2,0.1-0.4,0.2-0.6c0-0.2,0.1-0.3,0.2-0.4c-0.1-0.2,0-0.4,0.1-0.5c0.1-0.1,0.2-0.2,0.3-0.2V1.3  c0-0.2,0.1-0.3,0.2-0.4l0,0V0.8c0-0.1,0-0.1,0.1-0.1l0,0V0.6c0-0.2,0.1-0.4,0.2-0.6L54,1.4L0,116.1L44.7,114.8z"
+                                fill="#673ab7" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="d-block">
+                    <h2 class="h2 mb-1 sidebar-brand-text">PShell</h2>
+                    <span class="text-xs sidebar-subtext">Admin Panel</span>
+                </div>
+            </div>
+            <div class="collapse-close d-md-none">
+                <a href="#sidebarMenu" data-bs-toggle="collapse" data-bs-target="#sidebarMenu"
+                    aria-controls="sidebarMenu" aria-expanded="true" aria-label="Toggle navigation">
+                    <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Theme Toggle -->
+        <!-- <div class="theme-toggle-container mb-4">
+            <button id="themeToggle" class="theme-toggle-btn">
+                <span class="theme-icon dark-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </span>
+                <span class="theme-icon light-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </span>
+                <span class="theme-text">Dark Mode</span>
+            </button>
+        </div> -->
+
+        <!-- Theme Toggle Section (replace existing one) -->
+        <div class="theme-toggle-container mb-4">
+            <button id="themeToggle" class="theme-toggle-btn">
+                <span class="theme-icon dark-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </span>
+                <span class="theme-icon light-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </span>
+                <span class="theme-text">Dark Mode</span>
+                <span class="theme-switch">
+                    <span class="theme-switch-handle"></span>
+                </span>
+            </button>
+        </div>
+
+        <!-- Navigation Menu -->
+        <ul class="nav flex-column pt-3 pt-md-0">
+           
+
+            <!-- Divider -->
+        
+            <li class="nav-item mb-1">
+                <span class="text-uppercase text-xs sidebar-section-text">PowBot</span>
+            </li>
+
+             <li class="nav-item mb-2">
+                <a href="/index" class="nav-link d-flex align-items-center rounded py-3">
+                    <span class="sidebar-icon me-3">
+                        <div class="icon-shape">
+                            <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
+                                </path>
+                            </svg>
+                        </div>
+                    </span>
+                    <span class="sidebar-text">Dashboard</span>
+                    <span class="ms-auto badge rounded-pill">New</span>
+                </a>
+            </li>
+
+            
+            <li class="dropdown-divider my-4"></li>
+
+            <!-- System Section -->
+            <li class="nav-item mb-1">
+                <span class="text-uppercase text-xs sidebar-section-text">System</span>
+            </li>
+            
+
+            <li class="nav-item mb-2">
+                <a href="/settings.html" class="nav-link d-flex align-items-center rounded py-3">
+                    <span class="sidebar-icon me-3">
+                        <div class="icon-shape">
+                            <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                    </span>
+                    <span class="sidebar-text">Settings</span>
+                </a>
+            </li>
+
+            <li class="nav-item mb-2">
+                <a href="{{ url_for('authentication_blueprint.logout') }}"
+                    class="nav-link d-flex align-items-center rounded py-3">
+                    <span class="sidebar-icon me-3">
+                        <div class="icon-shape">
+                            <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                    </span>
+                    <span class="sidebar-text">Logout</span>
+                </a>
+            </li>
+
+           
+        </ul>
+
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer mt-auto py-3 text-center">
+            <p class="text-xs sidebar-footer-text">&copy; 2025 Red Teamers. All rights reserved.</p>
+            <div class="mt-2">
+                <span class="badge version-badge">v1</span>
+                <span class="badge status-badge ms-1">Online</span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<style>
+    /* Theme Variables */
+    :root {
+        /* Dark Theme (Default) */
+        --sidebar-bg-dark: linear-gradient(179deg, #000000, #090c33);
+        --sidebar-text-dark: #f0f0f0;
+        --sidebar-text-muted-dark: #a0a0a0;
+        --sidebar-section-text-dark: rgba(255, 255, 255, 0.5);
+        --sidebar-border-dark: 1px solid rgba(255, 255, 255, 0.05);
+        --sidebar-active-bg-dark: rgba(103, 58, 183, 0.2);
+        --sidebar-hover-bg-dark: rgba(67, 97, 238, 0.15);
+        --sidebar-brand-text-dark: #ffffff;
+        --sidebar-subtext-dark: #ffffff;
+        --sidebar-icon-bg-dark: rgba(255, 255, 255, 0.1);
+        --sidebar-icon-color-dark: #ffffff;
+        --sidebar-badge-bg-dark: rgba(103, 58, 183, 0.8);
+        --sidebar-badge-text-dark: #ffffff;
+        --sidebar-status-bg-dark: #28a745;
+        --sidebar-support-btn-bg-dark: rgba(103, 58, 183, 0.8);
+        --sidebar-support-btn-text-dark: #ffffff;
+        --sidebar-footer-text-dark: rgba(255, 255, 255, 0.6);
+
+        /* Light Theme */
+        --sidebar-bg-light: linear-gradient(179deg, #f8f9fa, #e9ecef);
+        --sidebar-text-light: #212529;
+        --sidebar-text-muted-light: #6c757d;
+        --sidebar-section-text-light: rgba(0, 0, 0, 0.5);
+        --sidebar-border-light: 1px solid rgba(0, 0, 0, 0.05);
+        --sidebar-active-bg-light: rgba(103, 58, 183, 0.1);
+        --sidebar-hover-bg-light: rgba(103, 58, 183, 0.05);
+        --sidebar-brand-text-light: #212529;
+        --sidebar-subtext-light: #6c757d;
+        --sidebar-icon-bg-light: rgba(0, 0, 0, 0.05);
+        --sidebar-icon-color-light: #673ab7;
+        --sidebar-badge-bg-light: #673ab7;
+        --sidebar-badge-text-light: #ffffff;
+        --sidebar-status-bg-light: #28a745;
+        --sidebar-support-btn-bg-light: #673ab7;
+        --sidebar-support-btn-text-light: #ffffff;
+        --sidebar-footer-text-light: rgba(0, 0, 0, 0.6);
+
+        /* Current Theme - Starts with Dark */
+        --sidebar-bg: var(--sidebar-bg-dark);
+        --sidebar-text: var(--sidebar-text-dark);
+        --sidebar-text-muted: var(--sidebar-text-muted-dark);
+        --sidebar-section-text: var(--sidebar-section-text-dark);
+        --sidebar-border: var(--sidebar-border-dark);
+        --sidebar-active-bg: var(--sidebar-active-bg-dark);
+        --sidebar-hover-bg: var(--sidebar-hover-bg-dark);
+        --sidebar-brand-text: var(--sidebar-brand-text-dark);
+        --sidebar-subtext: var(--sidebar-subtext-dark);
+        --sidebar-icon-bg: var(--sidebar-icon-bg-dark);
+        --sidebar-icon-color: var(--sidebar-icon-color-dark);
+        --sidebar-badge-bg: var(--sidebar-badge-bg-dark);
+        --sidebar-badge-text: var(--sidebar-badge-text-dark);
+        --sidebar-status-bg: var(--sidebar-status-bg-dark);
+        --sidebar-support-btn-bg: var(--sidebar-support-btn-bg-dark);
+        --sidebar-support-btn-text: var(--sidebar-support-btn-text-dark);
+        --sidebar-footer-text: var(--sidebar-footer-text-dark);
+
+        /* Common Styles */
+        --primary-color: #673ab7;
+        --primary-glow: #8c65d6;
+        --neon-accent: #39ff14;
+        --glow-intensity: 0 0 8px;
+    }
+
+    html,
+    body {
+        height: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Sidebar Base Styles */
+    .sidebar {
+        width: 280px;
+        background: var(--sidebar-bg);
+        border-right: var(--sidebar-border);
+        overflow: clip;
+        box-shadow: 0 0 25px rgba(103, 58, 183, 0.1);
+        overflow-y: auto;
+        max-height: 100vh;
+        transition: all 0.3s ease;
+    }
+
+    /* Animated Background Elements */
+    .sidebar-bg-elements {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        overflow: hidden;
+    }
+
+    .bg-circle {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(103, 58, 183, 0.1);
+        filter: blur(30px);
+        transition: all 0.3s ease;
+    }
+
+    .bg-circle-1 {
+        width: 200px;
+        height: 200px;
+        top: -50px;
+        right: -50px;
+        animation: float 15s infinite ease-in-out;
+    }
+
+    .bg-circle-2 {
+        width: 150px;
+        height: 150px;
+        bottom: 100px;
+        left: -50px;
+        animation: float 12s infinite ease-in-out reverse;
+    }
+
+    .bg-circle-3 {
+        width: 100px;
+        height: 100px;
+        bottom: 30px;
+        right: 20px;
+        animation: float 10s infinite ease-in-out;
+    }
+
+    @keyframes float {
+
+        0%,
+        100% {
+            transform: translate(0, 0);
+        }
+
+        50% {
+            transform: translate(20px, 20px);
+        }
+    }
+
+    /* Brand Logo Animation */
+    .brand-logo {
+        position: relative;
+        width: 60px;
+        height: 60px;
+        background: radial-gradient(circle at center, var(--primary-color) 50%, #000 100%);
+        box-shadow: 0 0 15px var(--primary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    /* Radar sweep */
+    .brand-logo::before {
+        content: "";
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        background: conic-gradient(from 0deg,
+                rgba(57, 255, 20, 0) 0deg,
+                rgba(57, 255, 20, 0.3) 30deg,
+                rgba(57, 255, 20, 0) 60deg,
+                rgba(57, 255, 20, 0) 360deg);
+        animation: sweep 2s linear infinite;
+        z-index: 0;
+    }
+
+    /* Inner glow ring */
+    .brand-logo::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 2px solid rgba(57, 255, 20, 0.4);
+        border-radius: 50%;
+        box-shadow: 0 0 8px rgba(57, 255, 20, 0.5);
+        z-index: 1;
+        animation: pulse-ring 2s ease-in-out infinite;
+    }
+
+    /* Sweep animation */
+    @keyframes sweep {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* Pulse ring effect */
+    @keyframes pulse-ring {
+
+        0%,
+        100% {
+            opacity: 0.6;
+            transform: scale(1);
+        }
+
+        50% {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+    }
+    /* Theme Toggle Styles */
+    .theme-toggle-container {
+        padding: 0.5rem;
+        border-radius: 8px;
+        background: var(--sidebar-icon-bg);
+        margin-bottom: 1rem;
+    }
+
+   /* Add these styles to your existing CSS */
+.theme-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    background: transparent;
+    color: var(--sidebar-text);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.theme-switch {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.sidebar.light-theme .theme-switch {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.theme-switch-handle {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.sidebar.light-theme .theme-switch-handle {
+    left: 22px;
+    background: var(--primary-color);
+}
+
+    .theme-toggle-btn:hover {
+        background: var(--sidebar-hover-bg);
+    }
+
+    .theme-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 0.5rem;
+    }
+
+    .light-icon {
+        display: none;
+    }
+
+    .dark-icon {
+        display: flex;
+    }
+
+    .theme-text {
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    /* Light Theme Styles */
+    .sidebar.light-theme {
+        --sidebar-bg: var(--sidebar-bg-light);
+        --sidebar-text: var(--sidebar-text-light);
+        --sidebar-text-muted: var(--sidebar-text-muted-light);
+        --sidebar-section-text: var(--sidebar-section-text-light);
+        --sidebar-border: var(--sidebar-border-light);
+        --sidebar-active-bg: var(--sidebar-active-bg-light);
+        --sidebar-hover-bg: var(--sidebar-hover-bg-light);
+        --sidebar-brand-text: var(--sidebar-brand-text-light);
+        --sidebar-subtext: var(--sidebar-subtext-light);
+        --sidebar-icon-bg: var(--sidebar-icon-bg-light);
+        --sidebar-icon-color: var(--sidebar-icon-color-light);
+        --sidebar-badge-bg: var(--sidebar-badge-bg-light);
+        --sidebar-badge-text: var(--sidebar-badge-text-light);
+        --sidebar-status-bg: var(--sidebar-status-bg-light);
+        --sidebar-support-btn-bg: var(--sidebar-support-btn-bg-light);
+        --sidebar-support-btn-text: var(--sidebar-support-btn-text-light);
+        --sidebar-footer-text: var(--sidebar-footer-text-light);
+    }
+
+    .sidebar.light-theme .bg-circle {
+        background: rgba(103, 58, 183, 0.05);
+    }
+
+    .sidebar.light-theme .dark-icon {
+        display: none;
+    }
+
+    .sidebar.light-theme .light-icon {
+        display: flex;
+    }
+
+    .sidebar.light-theme .theme-text {
+        content: "Light Mode";
+    }
+
+    /* Navigation Items */
+    .sidebar .nav-link {
+        color: var(--sidebar-text);
+        transition: all 0.3s ease;
+        margin-bottom: 4px;
+        position: relative;
+        z-index: 1;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .sidebar .nav-link::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(103, 58, 183, 0.2), transparent);
+        transition: all 0.6s ease;
+        z-index: -1;
+    }
+
+    .sidebar .nav-link:hover {
+        color: var(--sidebar-text);
+        transform: translateX(5px);
+        background: var(--sidebar-hover-bg);
+    }
+
+    .sidebar .nav-link:hover::before {
+        left: 100%;
+    }
+
+    .sidebar .nav-link.active {
+        background: var(--sidebar-active-bg);
+        color: var(--sidebar-text);
+        border-left: 3px solid var(--primary-color);
+    }
+
+    /* Icons and Shapes */
+    .sidebar .icon-shape {
+        transition: transform 0.3s ease, background 0.3s ease;
+        background: var(--sidebar-icon-bg);
+        color: var(--sidebar-icon-color);
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sidebar .nav-link:hover .icon-shape {
+        transform: translateX(3px) scale(1.1);
+        background: var(--primary-color);
+        color: white;
+    }
+
+    /* Text Styles */
+    .sidebar-brand-text {
+        color: var(--sidebar-brand-text);
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+    }
+
+    .sidebar-subtext {
+        color: var(--sidebar-subtext);
+        font-size: 0.75rem;
+    }
+
+    .sidebar-text {
+        color: var(--sidebar-text);
+        font-weight: 500;
+    }
+
+    .sidebar-section-text {
+        color: var(--sidebar-section-text);
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+
+    /* Badges */
+    .badge {
+        background: var(--sidebar-badge-bg);
+        color: var(--sidebar-badge-text);
+        font-weight: 600;
+        padding: 0.35em 0.65em;
+        transition: all 0.3s ease;
+    }
+
+    .version-badge {
+        background: var(--sidebar-badge-bg);
+        color: var(--sidebar-badge-text);
+    }
+
+    .status-badge {
+        background: var(--sidebar-status-bg);
+        color: white;
+    }
+
+    /* Divider */
+    .dropdown-divider {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        height: 1px;
+        margin: 1rem 0;
+    }
+
+    .sidebar.light-theme .dropdown-divider {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    /* Support Button */
+    .btn-support {
+        background: var(--sidebar-support-btn-bg);
+        border: none;
+        color: var(--sidebar-support-btn-text);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        border-radius: 8px;
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+    }
+
+    .btn-support:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(103, 58, 183, 0.2);
+    }
+
+    /* User Card */
+    .user-card {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 1.5rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .sidebar.light-theme .user-card {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    /* Sidebar Footer */
+    .sidebar-footer {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 1.5rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .sidebar.light-theme .sidebar-footer {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar-footer-text {
+        color: var(--sidebar-footer-text);
+    }
+
+    /* Mobile Navbar */
+    .navbar-theme-primary {
+        background: #0f172a;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Simplebar Customization */
+    .simplebar-scrollbar::before {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .sidebar.light-theme .simplebar-scrollbar::before {
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .simplebar-track.simplebar-vertical {
+        width: 6px;
+    }
+</style>
+<script>
+    // Replace your existing script with this simplified version
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    const sidebar = document.querySelector('.sidebar');
+    
+    // Check saved theme or default to dark
+    const savedTheme = localStorage.getItem('appTheme') || 'dark';
+    
+    // Apply saved theme
+    if (savedTheme === 'light') {
+        html.setAttribute('data-theme', 'light');
+        sidebar.classList.add('light-theme');
+        document.querySelector('.theme-text').textContent = 'Light Mode';
+    }
+    
+    // Toggle functionality
+    themeToggle.addEventListener('click', function() {
+        const isLight = html.getAttribute('data-theme') === 'light';
+        
+        if (isLight) {
+            // Switch to dark
+            html.removeAttribute('data-theme');
+            sidebar.classList.remove('light-theme');
+            localStorage.setItem('appTheme', 'dark');
+            document.querySelector('.theme-text').textContent = 'Dark Mode';
+        } else {
+            // Switch to light
+            html.setAttribute('data-theme', 'light');
+            sidebar.classList.add('light-theme');
+            localStorage.setItem('appTheme', 'light');
+            document.querySelector('.theme-text').textContent = 'Light Mode';
+        }
+    });
+});
+</script>

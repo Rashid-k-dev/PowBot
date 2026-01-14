@@ -1,0 +1,114 @@
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:4000
+ * Running on http://192.168.1.4:4000
+[33mPress CTRL+C to quit[0m
+ - - [13/Jan/2026 09:12:37] "GET /clients?key=abhsj223&_=1768275757047 HTTP/1.1" 200 -
+ - - [13/Jan/2026 09:12:39] "GET /clients?key=abhsj223&_=1768275759907 HTTP/1.1" 200 -
+ - - [13/Jan/2026 09:12:45] "GET /clients?key=abhsj223&_=1768275765243 HTTP/1.1" 200 -
+ - - [13/Jan/2026 09:12:47] "GET /clients?key=abhsj223&_=1768275767777 HTTP/1.1" 200 -
+ - - [13/Jan/2026 09:13:20] "GET /clients?key=abhsj223&_=1768275799993 HTTP/1.1" 200 -
+ - - [13/Jan/2026 09:17:51] "GET /clients?key=abhsj223&_=1768276071100 HTTP/1.1" 200 -
+ - - [13/Jan/2026 09:23:31] "GET /clients?key=abhsj223&_=1768276071101 HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:4000
+ * Running on http://192.168.1.4:4000
+[33mPress CTRL+C to quit[0m
+ - - [13/Jan/2026 11:00:56] "GET /clients?key=abhsj223&_=1768282256331 HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:01:02] "GET /clients?key=abhsj223&_=1768282256332 HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:01:03] "GET /clients?key=abhsj223&_=1768282256333 HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:01:03] "GET /clients?key=abhsj223&_=1768282256334 HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:01:05] "GET /clients?key=abhsj223&_=1768282256335 HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:02:50] "GET /clients?key=abhsj223&_=1768282256336 HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:02:51] "GET /clients?key=abhsj223&_=1768282256337 HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:02:52] "GET /clients?key=abhsj223&_=1768282256338 HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:02:52] "GET /clients?key=abhsj223&_=1768282256339 HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:06:10] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:06:45] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:06:50] "GET /clients?key=abhsj223&_=1768282610897 HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:07:02] "OPTIONS /send HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:07:02] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:07:02] "POST /response HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:07:02] "POST /send HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:07:09] "OPTIONS /send HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:07:09] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:07:09] "POST /response HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:07:09] "POST /send HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:07:32] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:07:44] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:08:02] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:08:21] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:08:32] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:08:56] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:09:02] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:09:31] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:09:32] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:10:02] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:10:06] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:10:33] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:10:43] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:11:03] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:11:18] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:11:33] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:11:53] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:12:03] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:12:28] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:12:33] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:13:03] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:13:05] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:13:33] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:13:40] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:14:03] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:14:16] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:14:33] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:14:51] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:15:03] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:15:28] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:15:33] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:16:03] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:16:03] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:16:33] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:16:38] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:17:04] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:17:13] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:17:34] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:17:50] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:18:04] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:18:05] "OPTIONS /send HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:18:05] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:18:05] "POST /response HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:18:05] "POST /send HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:18:18] "OPTIONS /send HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:18:18] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:18:18] "POST /response HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:18:18] "POST /send HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:18:22] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:18:22] "POST /response HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:18:22] "POST /send HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:18:29] "OPTIONS /send HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:18:29] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:18:29] "POST /response HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:18:29] "POST /send HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:18:57] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:18:59] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:19:29] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:19:32] "POST /check HTTP/1.1" 200 -
+ - - [13/Jan/2026 11:19:59] "POST /check HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:4000
+ * Running on http://10.2.0.2:4000
+[33mPress CTRL+C to quit[0m
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:4000
+ * Running on http://10.2.0.2:4000
+[33mPress CTRL+C to quit[0m
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:4000
+ * Running on http://10.2.0.2:4000
+[33mPress CTRL+C to quit[0m
+ - - [14/Jan/2026 12:43:56] "GET /clients?key=abhsj223&_=1768374836022 HTTP/1.1" 200 -
+ - - [14/Jan/2026 13:21:50] "GET /clients?key=abhsj223&_=1768377110654 HTTP/1.1" 200 -

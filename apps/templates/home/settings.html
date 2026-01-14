@@ -1,0 +1,527 @@
+{% extends "layouts/base.html" %} {% block title %} Client Builder Settings {%
+endblock %} {% block stylesheets %} {{ super() }}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+
+
+  .etting-container {
+  
+    background: linear-gradient(179deg, var(--bg-gradient-1), var(--bg-gradient-2)),
+      linear-gradient(179deg, var(--bg-gradient-3), var(--bg-gradient-4));
+    color: var(--text-primary);
+    min-height: 100vh; /* ✅ grows with content */
+    padding: 2rem;
+    margin: 0 auto;
+}
+
+
+  /* Header Section */
+  .header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .page-title {
+    color: var(--text-primary);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    max-width: 700px;
+  }
+
+  /* Card Styles */
+  .settings-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 2rem;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .card-title i {
+    margin-right: 10px;
+    color: var(--primary);
+    background: var(--primary-light);
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Form Elements */
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group {
+    flex: 1 0 300px;
+    padding: 0 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .form-label {
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .form-control,
+  .form-select {
+    background: var(--dark-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    transition: all 0.3s ease;
+  }
+
+  .form-control:focus,
+  .form-select:focus {
+    background: rgba(15, 23, 42, 0.9);
+    border-color: var(--primary);
+    color: white;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+    outline: none;
+  }
+
+  .form-check {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .form-check-input {
+    background-color: rgba(15, 23, 42, 0.7);
+    border: 1px solid var(--border);
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    margin-right: 10px;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .form-check-input.active {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.form-check-input.active::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 3px;
+}
+
+  .form-check-label {
+    color: var(--text-primary);
+    cursor: pointer;
+  }
+
+  /* Output Section */
+  .output-container {
+    margin-top: 2rem;
+    display: none;
+  }
+
+  .output-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .output-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  .copy-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+
+  .copy-btn:hover {
+    background: #3a56d4;
+    transform: translateY(-2px);
+  }
+
+  .copy-btn i {
+    margin-right: 6px;
+  }
+
+  .code-block {
+    background: linear-gradient(179deg, var(--bg-gradient-1), var(--bg-gradient-2)),
+      linear-gradient(179deg, var(--bg-gradient-3), var(--bg-gradient-4));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    max-height: 300px;
+    color: var(--text-primary);
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 1rem;
+  }
+
+  .btn-primary {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 10px rgba(67, 97, 238, 0.3);
+  }
+
+  .btn-primary:hover {
+    background: #3a56d4;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(67, 97, 238, 0.4);
+  }
+
+  .btn-outline {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+  }
+
+  .btn-outline:hover {
+    background: rgba(67, 97, 238, 0.1);
+  }
+
+  .action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  /* Status Indicators */
+  .status-indicator {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.85rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: rgba(51, 65, 85, 0.5);
+  }
+
+  .status-indicator.active {
+    background: rgba(76, 201, 240, 0.2);
+    color: #4cc9f0;
+  }
+
+  .status-indicator.inactive {
+    background: rgba(247, 37, 133, 0.2);
+    color: #f72585;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+  }
+
+  .status-dot.active {
+    background: #4cc9f0;
+    box-shadow: 0 0 8px rgba(76, 201, 240, 0.5);
+  }
+
+  .status-dot.inactive {
+    background: #f72585;
+    box-shadow: 0 0 8px rgba(247, 37, 133, 0.5);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .header-section {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .settings-card {
+      padding: 1.5rem;
+    }
+
+    .action-buttons {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .btn {
+      width: 100%;
+    }
+  }
+
+  /* Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.5s ease forwards;
+  }
+
+  .notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 12px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform: translateX(200%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+  }
+
+  .notification.show {
+    transform: translateX(0);
+  }
+
+  .notification i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+  }
+
+  .notification.success i {
+    color: #4cc9f0;
+  }
+
+  .notification.error i {
+    color: #f72585;
+  }
+
+  .loader {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--primary);
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 10px;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+
+{% endblock stylesheets %} {% block content %}
+<div class="etting-container">
+
+  <div class="settings-card fade-in">
+    <div class="card-title">
+      <i class="fas fa-cog"></i> Script Configuration
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Target Endpoint</label>
+        <input type="text" class="form-control" placeholder="https://api.example.com" id="targetEndpoint">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Execution Policy</label>
+        <select class="form-select" id="executionPolicy">
+          <option value="Bypass">Bypass</option>
+          <option value="Unrestricted">Unrestricted</option>
+          <option value="RemoteSigned">RemoteSigned</option>
+          <option value="AllSigned">AllSigned</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Check-in Interval (seconds)</label>
+        <input type="number" class="form-control" value="60" id="checkinInterval">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <div class="form-check">
+          <div class="form-check-input" id="persistenceToggle"></div>
+          <label class="form-check-label">Enable Persistence</label>
+        </div>
+        <p class="form-text">Adds script to startup for automatic execution</p>
+      </div>
+    </div>
+
+    <div class="action-buttons">
+      <button class="btn btn-primary" id="generateScriptBtn">
+        <i class="fas fa-terminal"></i> Generate One-Liner
+      </button>
+    </div>
+  </div>
+
+  <!-- Output Section -->
+  <div class="settings-card output-container" id="outputSection">
+    <div class="output-header">
+      <h3 class="output-title" id="outputTitle">Generated Script</h3>
+      <button class="copy-btn" id="copyBtn">
+        <i class="fas fa-copy"></i> Copy to Clipboard
+      </button>
+    </div>
+    <div class="code-block" id="codeOutput">
+      <!-- Generated code will appear here -->
+    </div>
+  </div>
+</div>
+
+<!-- Notification -->
+<div class="notification" id="notification">
+  <i class="fas fa-check-circle"></i>
+  <span id="notificationText">Script copied to clipboard!</span>
+</div>
+
+{% endblock content %} {% block javascripts %} {{ super() }}
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  document.getElementById("targetEndpoint").value = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
+
+  const generateScriptBtn = document.getElementById("generateScriptBtn");
+  const outputSection = document.getElementById("outputSection");
+  const codeOutput = document.getElementById("codeOutput");
+  const outputTitle = document.getElementById("outputTitle");
+  const copyBtn = document.getElementById("copyBtn");
+  const notification = document.getElementById("notification");
+  const notificationText = document.getElementById("notificationText");
+
+  const showNotification = (text, isError = false) => {
+    notificationText.textContent = text;
+    notification.classList.toggle("error", isError);
+    notification.classList.add("show");
+    setTimeout(() => notification.classList.remove("show"), 2500);
+  };
+
+  const getFormData = () => {
+    return {
+      domain: document.getElementById("targetEndpoint").value.trim(),
+      checkInterval: parseInt(document.getElementById("checkinInterval").value, 10),
+      persistence: document.getElementById("persistenceToggle").classList.contains("active"),
+      exPolicy: document.getElementById("executionPolicy").value.trim()
+    };
+  };
+
+  // Toggle persistence checkbox UI
+  document.querySelectorAll(".form-check-input").forEach(toggle => {
+    toggle.addEventListener("click", () => {
+      toggle.classList.toggle("active");
+    });
+  });
+
+  generateScriptBtn.addEventListener("click", async () => {
+    const payload = getFormData();
+
+    if (!payload.domain) {
+      showNotification("Please enter a target endpoint!", true);
+      return;
+    }
+
+    try {
+      const res = await fetch("/generate_script", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      if (!res.ok) throw new Error(`Server error: ${res.status}`);
+
+      const scriptText = await res.text();
+      codeOutput.textContent = scriptText;
+      outputTitle.textContent = "Generated Script";
+      outputSection.style.display = "block";
+      showNotification("Script generated successfully!");
+    } catch (err) {
+      showNotification(`Error: ${err.message}`, true);
+    }
+  });
+
+  // Copy button
+  copyBtn.addEventListener("click", () => {
+    const text = codeOutput.textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      showNotification("Script copied to clipboard!");
+    }).catch(err => {
+      showNotification(`Copy failed: ${err}`, true);
+    });
+  });
+});
+</script>
+
+
+{% endblock javascripts %}

@@ -1,0 +1,265 @@
+{% extends "layouts/base-fullscreen.html" %}
+
+{% block title %} Sign IN {% endblock %} 
+
+{% block stylesheets %}
+<style>
+  :root {
+    --primary: #4f46e5;
+    --secondary: #3b82f6;
+    --dark: #0f172a;
+    --light: #f8fafc;
+    --input-bg: rgba(255, 255, 255, 0.05);
+    --input-border: rgba(255, 255, 255, 0.2);
+  }
+
+  body {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #e2e8f0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+  }
+
+  .signin-container {
+    max-width: 450px;
+    width: 100%;
+    padding: 2rem;
+  }
+
+  .signin-card {
+    background: rgba(15, 23, 42, 0.8);
+    border-radius: 20px;
+    padding: 2.5rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 0.6s ease forwards;
+  }
+
+  .signin-card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(79,70,229,0.15) 0%, transparent 70%);
+    z-index: -1;
+    animation: rotate 15s infinite linear;
+  }
+
+  .signin-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .signin-logo {
+    width: 50px;
+    height: 50px;
+    background: rgba(79,70,229,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    backdrop-filter: blur(6px);
+    transition: all 0.3s ease;
+  }
+
+  .signin-logo:hover {
+    transform: scale(1.1) rotate(10deg);
+  }
+
+  .signin-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #fff;
+  }
+
+  .signin-subtitle {
+    color: #94a3b8;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .form-group {
+    position: relative;
+    margin-bottom: 1.75rem;
+  }
+
+  .form-label {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background: transparent;
+    padding: 0 0.25rem;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 1rem 1rem;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .form-control:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(255,255,255,0.05);
+  }
+
+  .form-control:focus + .form-label,
+  .form-control:not(:placeholder-shown) + .form-label {
+    top: -10px;
+    left: 12px;
+    font-size: 0.8rem;
+    color: var(--primary);
+    background: rgba(15,23,42,0.8);
+  }
+
+  .btn-signin {
+    width: 100%;
+    padding: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-signin::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: -100%;
+    top: 0;
+    background: rgba(255,255,255,0.1);
+    transition: all 0.4s ease;
+  }
+
+  .btn-signin:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn-signin:hover::after {
+    left: 0;
+  }
+
+  .form-check-label {
+    color: #cbd5e1;
+    cursor: pointer;
+  }
+
+  .form-check-input:checked {
+    background-color: var(--primary);
+    border-color: var(--primary);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @media (max-width: 575.98px) {
+    .signin-card {
+      padding: 1.5rem;
+    }
+    .signin-title {
+      font-size: 1.6rem;
+    }
+    .signin-logo {
+      width: 70px;
+      height: 70px;
+    }
+    .btn-signin {
+      padding: 0.85rem;
+    }
+  }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="signin-container">
+  <div class="signin-card">
+    <div class="signin-header">
+      <div class="signin-logo">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 122.4 221.6" style="enable-background:new 0 0 122.4 221.6;" xml:space="preserve">
+                    <style type="text/css">
+                        .st0{fill:#3f51b5;}
+                        .st1{fill:#9af842;}
+                    </style>
+                    <path class="st0" d="M914.3,109.3L912,109c0.2,1.2,0.3,2.5,0.5,3.8C913,111.6,913.6,110.4,914.3,109.3z" fill="#673ab7"/>
+                    <path class="st1" d="M44.7,114.8L2.6,221.6L120.1,75.2l-51.8,1.2L112,3.9c0-0.1,0-0.1,0.1-0.2c0-0.1,0-0.2,0.1-0.3l0,0  c0-0.1,0-0.1,0.1-0.1c0.1-0.2,0.1-0.4,0.2-0.6c0-0.2,0.1-0.3,0.2-0.4c-0.1-0.2,0-0.4,0.1-0.5c0.1-0.1,0.2-0.2,0.3-0.2V1.3  c0-0.2,0.1-0.3,0.2-0.4l0,0V0.8c0-0.1,0-0.1,0.1-0.1l0,0V0.6c0-0.2,0.1-0.4,0.2-0.6L54,1.4L0,116.1L44.7,114.8z" fill="#673ab7"/>
+                </svg>
+      </div>
+      <h1 class="signin-title">Admin</h1> 
+      <p class="signin-subtitle">Sign in to continue to your dashboard</p>
+    </div>
+
+    <form method="post" action="">
+        {{ form.hidden_tag() }}
+        
+        <div class="form-group">
+          {{ form.username(class="form-control", placeholder="Username") }}
+          <label class="form-label">Username</label>
+        </div>
+
+        <div class="form-group">
+          {{ form.password(class="form-control", placeholder="Password") }}
+          <label class="form-label">Password</label>
+        </div>
+
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" id="remember">
+          <label class="form-check-label" for="remember">Remember me</label>
+        </div>
+
+        <button name="login" type="submit" class="btn btn-signin">
+        <span>Sign in</span>
+        </button>
+    </form>
+  </div>
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const inputs = document.querySelectorAll('.form-control');
+    inputs.forEach(input => {
+      input.addEventListener('focus', function() {
+        this.parentElement.querySelector('.form-label').style.color = '#4f46e5';
+      });
+      input.addEventListener('blur', function() {
+        this.parentElement.querySelector('.form-label').style.color = '#94a3b8';
+      });
+    });
+  });
+</script>
+{% endblock javascripts %}

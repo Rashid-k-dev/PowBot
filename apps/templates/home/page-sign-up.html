@@ -1,0 +1,96 @@
+
+   
+</head>
+<body>
+    
+
+    <script>
+        $(document).ready(function() {
+            // Initialize DataTable
+            $('#datatable').DataTable({
+                paging: true,
+                pageLength: 10,
+                lengthMenu: [5, 10, 25, 50],
+                order: [[5, 'desc']],
+                language: {
+                    search: "Filter:",
+                    paginate: {
+                        next: '<i class="fas fa-chevron-right"></i>',
+                        previous: '<i class="fas fa-chevron-left"></i>'
+                    }
+                }
+            });
+            
+            // Terminal functionality
+            const outputs = $('#outputs');
+            
+            // Output to console
+            function output(message, type = 'info') {
+                const line = $('<div class="output-line"></div>').addClass(`output-${type}`).text(message);
+                outputs.append(line);
+                outputs.scrollTop(outputs[0].scrollHeight);
+            }
+            
+            // Send command
+            $('#send-command').click(() => {
+                const command = $('#command-input').val().trim();
+                if (command) {
+                    output(`> ${command}`, 'cmd');
+                    
+                    // Simulate command execution
+                    setTimeout(() => {
+                        if (command === 'help') {
+                            output("Available commands: status, update, restart, config, logs, help", 'info');
+                        } else if (command === 'status') {
+                            output("Client status: 3 active, 2 inactive", 'success');
+                        } else if (command === 'clear') {
+                            outputs.empty();
+                        } else {
+                            output(`Command executed: ${command}`, 'success');
+                        }
+                    }, 500);
+                    
+                    $('#command-input').val('').focus();
+                }
+            });
+            
+            // Enter key to send command
+            $('#command-input').keypress((e) => {
+                if (e.which === 13) {
+                    $('#send-command').click();
+                }
+            });
+            
+            // Clear console
+            $('#clear-console').click(() => {
+                outputs.empty();
+                output("Console cleared. Ready for new commands.", 'info');
+            });
+            
+            // Refresh clients
+            $('#refresh-clients').click(() => {
+                output("Refreshing client list...", 'info');
+                setTimeout(() => {
+                    output("Client list refreshed. 5 clients available.", 'success');
+                }, 800);
+            });
+            
+            // Remove selected
+            $('#remove-selected').click(() => {
+                const selected = $('.log-select:checked').length;
+                if (selected === 0) {
+                    output("Please select at least one client to remove", 'warning');
+                } else {
+                    output(`Removing ${selected} client(s)...`, 'info');
+                    setTimeout(() => {
+                        output(`${selected} client(s) removed successfully`, 'success');
+                    }, 1000);
+                }
+            });
+            
+            // Select all
+            $('#select-all').click(function() {
+                $('.log-select').prop('checked', this.checked);
+            });
+        });
+    </script>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ph4nt0m Kit SVG Animation</title>
+  <style>
+    svg {
+      display: block;
+      margin: 0 auto;
+      width: 80%;
+      height: auto;
+    }
+    text {
+      font-family: Arial, sans-serif;
+      font-size: 60px;
+      text-anchor: middle;
+      dominant-baseline: middle;
+    }
+    tspan {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- SVG container with a text element -->
+  <svg viewBox="0 0 800 200">
+    <text x="400" y="100" id="svgText">ph4nt0m kit</text>
+  </svg>
+  
+  <!-- Include anime.js from a CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script>
+    // Get the text element
+    const textElement = document.getElementById('svgText');
+    // Get the text content and clear it
+    const textContent = textElement.textContent;
+    textElement.textContent = '';
+    
+    // Wrap each character in a <tspan>
+    Array.from(textContent).forEach(char => {
+      const tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+      tspan.textContent = char;
+      // If the character is not a space, add a class for animation
+      if (char !== ' ') {
+        tspan.setAttribute('class', 'letter');
+      } else {
+        // For spaces, set opacity to 1 so they're always visible
+        tspan.setAttribute('opacity', 1);
+      }
+      textElement.appendChild(tspan);
+    });
+    
+    // Animate each letter using anime.js
+    anime.timeline({loop: false})
+      .add({
+        targets: '#svgText .letter',
+        opacity: [0, 1],
+        translateY: [50, 0],
+        easing: "easeOutExpo",
+        duration: 800,
+        delay: (el, i) => 100 * i  // Stagger the animation for each letter
+      });
+  </script>
+</body>
+</html>

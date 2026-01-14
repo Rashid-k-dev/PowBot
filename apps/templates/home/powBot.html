@@ -1,0 +1,684 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Client Management {% endblock %}
+
+{% block stylesheets %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.dataTables.min.css">
+<style>
+    /* Terminal Styles */
+    .terminal-wrapper {
+        height: 400px;
+        /* Fixed height or use flex for dynamic sizing */
+    }
+
+    .terminal-container {
+        background: #1e1e1e;
+        overflow: auto;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        height: 55vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .terminal-header {
+        padding: 0.75rem 1rem;
+        background: #252526;
+        border-bottom: 1px solid #2d2d2d;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #d4d4d4;
+        font-size: 0.85rem;
+        font-weight: 500;
+        flex-shrink: 0;
+    }
+
+    .terminal-controls {
+        display: flex;
+        gap: 0.75rem;
+    }
+
+    .terminal-btn {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .terminal-close {
+        background: #ff5f56;
+        border: 1px solid #e0443e;
+    }
+
+    .terminal-minimize {
+        background: #ffbd2e;
+        border: 1px solid #dea123;
+    }
+
+    .terminal-maximize {
+        background: #27c93f;
+        border: 1px solid #1aab29;
+    }
+
+    .terminal-btn:hover {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+
+    .terminal-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .terminal-output {
+        flex: 1;
+        padding: 1rem;
+        overflow-y: auto;
+        background: #1e1e1e;
+    }
+
+    .terminal-prompt-container {
+        background: #252526;
+        border-top: 1px solid #2d2d2d;
+        padding: 0.5rem 1rem;
+    }
+
+    .terminal-prompt {
+        display: flex;
+        align-items: center;
+    }
+
+    .prompt-indicator {
+        color: #569cd6;
+        font-weight: bold;
+        margin-right: 0.5rem;
+    }
+
+    #command-input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        padding: 0.5rem 0;
+        color: #e0e0e0;
+        font-family: inherit;
+        font-size: 0.95rem;
+        outline: none;
+    }
+
+    #send-command {
+        background: transparent;
+        border: none;
+        color: #569cd6;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        transition: color 0.2s ease;
+    }
+
+    #send-command:hover {
+        color: #4ec9b0;
+    }
+
+    .console-output {
+        font-family: inherit;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        white-space: pre-wrap;
+    }
+
+    .output-line {
+        margin-bottom: 0.5rem;
+    }
+
+    .output-cmd {
+        color: #9cdcfe;
+    }
+
+    .output-success {
+        color: #4ec9b0;
+    }
+
+    .output-error {
+        color: #f48771;
+    }
+
+    .output-warning {
+        color: #dcdcaa;
+    }
+
+    .output-info {
+        color: #d4d4d4;
+    }
+
+    /* Scrollbar styling */
+    .terminal-output::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .terminal-output::-webkit-scrollbar-track {
+        background: #252526;
+    }
+
+    .terminal-output::-webkit-scrollbar-thumb {
+        background: #3e3e42;
+        border-radius: 4px;
+    }
+
+    .terminal-output::-webkit-scrollbar-thumb:hover {
+        background: #454545;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .PowBot-container {
+            padding: 1rem;
+        }
+
+        .terminal-wrapper {
+            height: 300px;
+        }
+    }
+</style>
+<style>
+    .PowBot-container {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: radial-gradient(ellipse at top, var(--bg-gradient-1), var(--bg-gradient-2)),
+            radial-gradient(ellipse at bottom, var(--bg-gradient-3), var(--bg-gradient-4));
+        color: var(--text-color);
+        min-height: 100vh;
+        padding: 2rem;
+        margin: 0 auto;
+    }
+
+    .card {
+        background: var(--bg-gradient-1);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(4px);
+        margin-bottom: 1.5rem;
+        overflow: hidden;
+    }
+
+    .card-header {
+        padding: 1rem 1.5rem;
+        background: rgba(23, 32, 45, 0.8);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .card-body {
+        padding: 1.5rem;
+    }
+
+    .btn {
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .btn-sm {
+        padding: 0.35rem 0.75rem;
+        font-size: 0.875rem;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+        color: white;
+    }
+
+    .btn-secondary {
+        background: rgba(88, 166, 255, 0.15);
+        color: var(--terminal-highlight);
+        border: 1px solid rgba(88, 166, 255, 0.3);
+    }
+
+    .btn-danger {
+        background: linear-gradient(135deg, #ff416c, #ff4b2b);
+        color: white;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn:active {
+        transform: translateY(0);
+    }
+
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+
+        /* keeps table readable on smaller devices */
+    }
+
+    .table-responsive table {
+        min-width: 600px;
+    }
+
+    th,
+    td {
+        word-wrap: break-word;
+    }
+
+    tr:last-child td {
+        border-bottom: none;
+    }
+
+    tr:hover {
+        background: rgba(88, 166, 255, 0.08);
+    }
+
+    /* Status indicators */
+    .status-indicator {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-right: 8px;
+    }
+
+    .status-active {
+        background-color: var(--terminal-success);
+        box-shadow: 0 0 8px rgba(63, 185, 80, 0.5);
+    }
+
+    .status-inactive {
+        background-color: var(--terminal-error);
+    }
+
+    /* Professional terminal styling */
+
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .PowBot-container {
+            padding: 1rem;
+        }
+
+        .card-header {
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .header-actions {
+            align-self: flex-end;
+        }
+
+        .terminal-body {
+            height: 300px;
+        }
+    }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="PowBot-container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <span>Connected Clients</span>
+                    <div class="header-actions">
+                        <button class="btn btn-sm btn-primary me-2" id="refresh-clients">
+                            <i class="fas fa-sync-alt me-1"></i> Refresh
+                        </button>
+                        <button class="btn btn-sm btn-danger" id="remove-selected">
+                            <i class="fas fa-trash-alt me-1"></i> Remove Selected
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="datatable" class="display">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <input type="checkbox" id="select-all">
+                                    </th>
+                                    <th>ID</th>
+                                    <th>Status</th>
+                                    <th>IP</th>
+                                    <th>Country</th>
+                                    <th>Last Seen</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data will be dynamically populated -->
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Command Section -->
+        <div class="col-12">
+            <div class="terminal-header">
+                    <div>Command Terminal</div>
+                    <div>
+                        <button class="btn btn-sm btn-secondary" id="clear-console"
+                            style="background: #2d2d2d; color: #d4d4d4; border: 1px solid #3e3e42;">
+                            <i class="fas fa-ban me-1"></i> Clear
+                        </button>
+                    </div>
+            </div>
+            <div class="terminal-container">
+               
+
+                <div class="terminal-body">
+                    <div class="console-output" id="outputs"></div>
+                    <div class="terminal-prompt">
+                        <span class="prompt-indicator">></span>
+                        <input type="text" id="command-input" class="form-control" placeholder="Enter command...">
+                        <button class="btn" id="send-command" title="Send Command">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block javascripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/dist/markdown-it.min.js"></script>
+
+<script>
+    // Client status constants
+    const CLIENT_STATUS = {
+        ACTIVE: 'active',
+        INACTIVE: 'inactive',
+        NEW: 'new'
+    };
+    const domain = window.location.hostname;
+    const isDebug = {{ 'true' if debug else 'false' }};
+    const scheme = isDebug ? 'http' : 'https';
+    const apiUrl = `${scheme}://${domain}:4000`;
+
+
+    // Fetch current domain
+
+
+    // Country flag mapping
+    const FLAG_MAPPING = {
+        "AX": "aland-islands.svg", "AL": "albania.svg", "DZ": "algeria.svg", "AS": "american-samoa.svg",
+        "AI": "anguilla.svg", "AR": "argentina.svg", "AM": "armenia.svg", "AU": "australia.svg",
+        "AT": "austria.svg", "AZ": "azerbaijan.svg", "BH": "bahrain.svg", "BY": "belarus.svg",
+        "BE": "belgium.svg", "BO": "bolivia.svg", "BA": "bosnia-and-herzegovina.svg", "BW": "botswana.svg",
+        "BR": "brazil.svg", "BG": "bulgaria.svg", "KH": "cambodia.svg", "CM": "cameroon.svg",
+        "CA": "canada.svg", "CL": "chile.svg", "CN": "china.svg", "CO": "colombia.svg",
+        "CR": "costa-rica.svg", "HR": "croatia.svg", "CU": "cuba.svg", "CY": "cyprus.svg",
+        "CZ": "czech-republic.svg", "DK": "denmark.svg", "EC": "ecuador.svg", "EG": "egypt.svg",
+        "EE": "estonia.svg", "ET": "ethiopia.svg", "FI": "finland.svg", "FR": "france.svg",
+        "GE": "georgia.svg", "DE": "germany.svg", "GR": "greece.svg", "HT": "haiti.svg",
+        "HK": "hong-kong.svg", "HU": "hungary.svg", "IS": "iceland.svg", "IN": "india.svg",
+        "ID": "indonesia.svg", "IR": "iran.svg", "IQ": "iraq.svg", "IE": "ireland.svg",
+        "IL": "israel.svg", "IT": "italy.svg", "CI": "ivory-coast.svg", "JP": "japan.svg",
+        "KZ": "kazakhstan.svg", "KW": "kuwait.svg", "LV": "latvia.svg", "LI": "liechtenstein.svg",
+        "LT": "lithuania.svg", "LU": "luxembourg.svg", "MY": "malaysia.svg", "MX": "mexico.svg",
+        "MN": "mongolia.svg", "ME": "montenegro.svg", "NR": "nauru.svg", "NL": "netherlands.svg",
+        "NI": "nicaragua.svg", "NG": "nigeria.svg", "NO": "norway.svg", "PK": "pakistan.svg",
+        "PA": "panama.svg", "PY": "paraguay.svg", "PE": "peru.svg", "PH": "philippines.svg",
+        "PT": "portugal.svg", "PR": "puerto-rico.svg", "MK": "republic-of-macedonia.svg",
+        "PL": "republic-of-poland.svg", "RO": "romania.svg", "RU": "russia.svg", "RS": "serbia.svg",
+        "SG": "singapore.svg", "SK": "slovakia.svg", "SI": "slovenia.svg", "ZA": "south-africa.svg",
+        "KR": "south-korea.svg", "ES": "spain.svg", "LK": "sri-lanka.svg", "SE": "sweden.svg",
+        "CH": "switzerland.svg", "TW": "taiwan.svg", "TH": "thailand.svg", "TN": "tunisia.svg",
+        "TR": "turkey.svg", "UA": "ukraine.svg", "AE": "united-arab-emirates.svg", "GB": "united-kingdom.svg",
+        "US": "united-states.svg", "UY": "uruguay.svg", "VE": "venezuela.svg", "VN": "vietnam.svg"
+    };
+
+    // Get country with flag
+    function getCountryWithFlag(country) {
+        const flagFile = FLAG_MAPPING[country.toUpperCase()] || 'republic-of-macedonia.svg';
+        const assetsRoot = "{{ config.ASSETS_ROOT }}";
+        return `<img src="${assetsRoot}/img/flags/${flagFile}" class="me-2" style="width: 20px">${country.toUpperCase()}`;
+    }
+
+    // Initialize DataTables
+    function init_DataTables() {
+        $('#datatable').DataTable({
+            serverSide: false,
+            processing: true,
+            ajax: {
+                url: `${apiUrl}/clients`,
+                type: 'GET',
+                data: { key: 'abhsj223' },
+                dataSrc: function (json) {
+                    return json.map(item => ({
+                        id: item.id,
+                        status: item.status || CLIENT_STATUS.ACTIVE,
+                        ip: item.ip,
+                        country: item.country,
+                        updated_date: item.updated_date
+                    }));
+                }
+            },
+            responsive: true,   // enable DataTables responsive plugin
+            autoWidth: false,   // prevent fixed widths
+            pageLength: 20,
+            columns: [
+                {
+                    data: null,
+                    orderable: false,
+                    render: function (_data, _type, row) {
+                        return `<input type="checkbox" class="log-select" data-id="${row.id}">`;
+                    }
+                },
+                { data: "id" },
+                {
+                    data: "status",
+                    render: function (data, _type, row) {
+                        const statusClass = data === CLIENT_STATUS.ACTIVE ?
+                            'status-active' : 'status-inactive';
+
+                        const statusText = data === CLIENT_STATUS.ACTIVE ?
+                            'Active' : 'Inactive';
+
+                        return `<span class="status-indicator ${statusClass}"></span>${statusText}`;
+                    }
+                },
+                { data: "ip" },
+                {
+                    data: "country",
+                    render: function (data, _type, row) {
+                        return getCountryWithFlag(data);
+                    }
+                },
+                {
+                    data: "updated_date",
+                    render: function (data, _type, _row) {
+                        const d = new Date(data);
+                        return d.toLocaleString();
+                    }
+                }
+            ],
+            order: [[5, 'desc']],
+            language: {
+                emptyTable: "No clients connected",
+                info: "Showing _START_ to _END_ of _TOTAL_ clients",
+                infoEmpty: "Showing 0 to 0 of 0 clients",
+                search: "Filter:"
+            }
+        });
+    }
+
+    // Output to console
+    // Output to console - updated for professional look
+    function output(message, type = 'info') {
+        const timestamp = new Date().toLocaleTimeString();
+        const formattedMessage = `[${timestamp}] ${message}`;
+
+        // Create output line
+        const line = document.createElement('div');
+        line.className = `output-line output-${type}`;
+        line.innerHTML = formattedMessage;
+
+        // Append to output area
+        document.getElementById('outputs').appendChild(line);
+
+        // Scroll to bottom
+        const terminalBody = document.querySelector('.terminal-body');
+        terminalBody.scrollTop = terminalBody.scrollHeight;
+    }
+
+
+    // Focus command input when terminal is clicked
+    document.querySelector('.terminal-container').addEventListener('click', () => {
+        document.getElementById('command-input').focus();
+    });
+
+
+
+    async function sendCommandToClients(command) {
+        // Get selected client IDs
+        const selectedIds = [];
+        $('.log-select:checked').each(function () {
+            selectedIds.push($(this).data('id'));
+        });
+
+        if (selectedIds.length === 0) {
+            output('No clients selected. Please select clients from the table above.', 'warning');
+            return;
+        }
+
+        // Display the command being sent
+        output(`Sending command to ${selectedIds.length} client(s): ${command}`, 'cmd');
+
+        // Track success/failure counts
+        let successCount = 0;
+        let errorCount = 0;
+
+        // Send to each client
+        for (const clientId of selectedIds) {
+            try {
+                const response = await fetch(`${apiUrl}/send`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        client_id: clientId,
+                        message: command
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    output(`Client #${clientId}: ${data.response || "Command executed successfully"}`, 'success');
+                    successCount++;
+                } else {
+                    output(`Client #${clientId}: ${data.error || "Command failed"}`, 'error');
+                    errorCount++;
+                }
+            } catch (error) {
+                output(`Client #${clientId}: Network error - ${error.message}`, 'error');
+                errorCount++;
+            }
+        }
+
+        // Show summary
+        if (selectedIds.length > 1) {
+            const summary = `Command execution complete: ${successCount} succeeded, ${errorCount} failed`;
+            output(summary, errorCount > 0 ? 'warning' : 'success');
+        }
+    }
+
+    // Initialize on DOM ready
+    $(document).ready(function () {
+        init_DataTables();
+
+        // Command sending
+        $("#send-command").click(() => {
+            const command = $("#command-input").val().trim();
+            if (command) {
+                sendCommandToClients(command);
+                output(`$ ${command}`, 'cmd');
+                $("#command-input").val("").focus();
+            }
+        });
+
+        $("#command-input").keypress((e) => {
+            if (e.which === 13) {
+                $("#send-command").click();
+            }
+        });
+
+
+
+        // Console controls
+        $("#clear-console").click(() => $("#outputs").empty());
+        $("#refresh-clients").click(() => $('#datatable').DataTable().ajax.reload());
+
+        // Client selection
+        $("#select-all").click(function () {
+            $('.log-select').prop('checked', this.checked);
+        });
+
+        $("#remove-selected").click(async () => {
+            const selectedIds = [];
+            $('.log-select:checked').each(function () {
+                selectedIds.push($(this).data('id'));
+            });
+
+            if (selectedIds.length === 0) {
+                output('Please select clients to remove', 'warning');
+                return;
+            }
+
+            if (confirm(`Are you sure you want to remove ${selectedIds.length} selected clients?`)) {
+                output(`Removing ${selectedIds.length} clients...`, 'info');
+
+                try {
+                    const response = await fetch(`${apiUrl}/remove-clients`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ client_ids: selectedIds })
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        output(`Successfully removed ${selectedIds.length} clients`, 'success');
+                        $('#datatable').DataTable().ajax.reload();
+                    } else {
+                        output(`Error removing clients: ${data.error}`, 'error');
+                    }
+                } catch (error) {
+                    output(`Network error: ${error.message}`, 'error');
+                }
+            }
+        });
+    });
+</script>
+{% endblock javascripts %}
