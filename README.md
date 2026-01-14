@@ -82,7 +82,7 @@
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/PowBot.git
+   git clone https://github.com/rshdk/PowBot.git
    cd PowBot
    ```
 
